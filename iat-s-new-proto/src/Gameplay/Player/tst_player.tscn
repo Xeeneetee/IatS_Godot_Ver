@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://b00pd7p2ge8f4"]
+
+[ext_resource type="Texture2D" uid="uid://d30huyq0uqmj2" path="res://src/Gameplay/Player/Sprites/Kanago_Idle.png" id="1_1ljcp"]
+[ext_resource type="Script" uid="uid://b8yia3r0x5ke2" path="res://src/Gameplay/Player/Scripts/player.gd" id="1_diltf"]
+[ext_resource type="Script" uid="uid://cmjm1pf56os3j" path="res://src/Gameplay/Player/Scripts/player_state_machine.gd" id="3_suybl"]
+[ext_resource type="Script" uid="uid://b60y8x0qyssvm" path="res://src/Gameplay/Player/Scripts/state_idle.gd" id="4_axs1j"]
+[ext_resource type="Script" uid="uid://dsf1rx8ksaf6m" path="res://src/Gameplay/Player/Scripts/state_run.gd" id="5_j512m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wanr"]
+
+[sub_resource type="Animation" id="Animation_diltf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_oiktp"]
+resource_name = "idle_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_v0arb"]
+resource_name = "idle_down_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_xf72o"]
+resource_name = "idle_side"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_ir0qw"]
+resource_name = "idle_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_0mkk5"]
+resource_name = "idle_up_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0arb"]
+_data = {
+&"RESET": SubResource("Animation_diltf"),
+&"idle_down": SubResource("Animation_oiktp"),
+&"idle_down_left": SubResource("Animation_v0arb"),
+&"idle_side": SubResource("Animation_xf72o"),
+&"idle_up": SubResource("Animation_ir0qw"),
+&"idle_up_left": SubResource("Animation_0mkk5")
+}
+
+[node name="tst_player" type="CharacterBody2D" unique_id=601903441]
+script = ExtResource("1_diltf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=533682013]
+shape = SubResource("CircleShape2D_3wanr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1766485377]
+texture_filter = 1
+position = Vector2(-1, -23)
+texture = ExtResource("1_1ljcp")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=789056047]
+libraries/ = SubResource("AnimationLibrary_v0arb")
+
+[node name="StateMachine" type="Node" parent="." unique_id=336807561]
+script = ExtResource("3_suybl")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=761086663]
+script = ExtResource("4_axs1j")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=764954146]
+script = ExtResource("5_j512m")
