@@ -1,6 +1,6 @@
 class_name State_Idle extends State
 
-@onready var Run: State_Run = $"../Run"
+@onready var run: State_Run = $"../Run"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
