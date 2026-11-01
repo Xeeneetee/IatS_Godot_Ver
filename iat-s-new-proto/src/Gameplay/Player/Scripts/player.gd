@@ -15,13 +15,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
 	pass
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	move_and_slide()
 
@@ -34,9 +34,15 @@ func SetDirection() -> bool:
 	# diagonals
 	if direction.x < 0 and direction.y < 0:
 		new_dir = Vector2(-1, -1) # up left
+		
+	if direction.x > 0 and direction.y < 0:
+		new_dir = Vector2(1, -1) # up right
 	
 	elif direction.x < 0 and direction.y > 0:
 		new_dir = Vector2(-1, 1) # down left
+	
+	elif direction.x > 0 and direction.y > 0:
+		new_dir = Vector2(1, 1) # down right
 		
 	elif direction.y == 0:
 		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
@@ -48,7 +54,7 @@ func SetDirection() -> bool:
 		return false
 		
 	cardinal_direction = new_dir
-	sprite.scale.x = 1 if cardinal_direction.x < 0 else -1
+	sprite.scale.x = 1 
 	
 	return true
 
@@ -64,9 +70,17 @@ func AnimDirection() -> String:
 		return "down"
 	elif cardinal_direction == Vector2.UP:
 		return "up"
+	elif cardinal_direction == Vector2.LEFT:
+		return "left"
+	elif cardinal_direction == Vector2.RIGHT:
+		return "right"
 	elif cardinal_direction.y < 0 and cardinal_direction.x < 0:
 		return "up_left"
+	elif cardinal_direction.y < 0 and cardinal_direction.x > 0:
+		return "up_right"
 	elif cardinal_direction.y > 0 and cardinal_direction.x < 0:
 		return "down_left"
+	elif cardinal_direction.y > 0 and cardinal_direction.x > 0:
+		return "down_right"
 	else:
-		return "side"
+		return "down"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d30huyq0uqmj2"
-path="res://.godot/imported/Kanago_Idle.png-9aa84866e0459a53dde2eb99f34213a7.ctex"
+uid="uid://bo6gxr7o76k1"
+path="res://.godot/imported/Kanago_Run_Concept.png-dfbefd752eb980e8c9db5b9da4ccfc8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Gameplay/Player/Sprites/Kanago_Idle.png"
-dest_files=["res://.godot/imported/Kanago_Idle.png-9aa84866e0459a53dde2eb99f34213a7.ctex"]
+source_file="res://src/Gameplay/Player/Sprites/Kanago_Run_Concept.png"
+dest_files=["res://.godot/imported/Kanago_Run_Concept.png-dfbefd752eb980e8c9db5b9da4ccfc8a.ctex"]
 
 [params]
 
