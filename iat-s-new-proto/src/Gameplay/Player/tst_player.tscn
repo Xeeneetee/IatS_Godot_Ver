@@ -1023,6 +1023,8 @@ _data = {
 
 [node name="tst_player" type="CharacterBody2D" unique_id=601903441]
 collision_mask = 17
+motion_mode = 1
+wall_min_slide_angle = 0.17453292
 script = ExtResource("1_diltf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=533682013]
